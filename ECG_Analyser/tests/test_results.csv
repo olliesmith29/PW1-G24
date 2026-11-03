@@ -27,4 +27,5 @@ T25,Error,"Negative sampling rate","Error ID ECG:badFs","raised ECG:badFs",PASS
 T26,Error,"Matrix instead of vector","Error ID ECG:badInput","raised ECG:badInput",PASS
 T27,Error,"File does not exist","Error ID ECG:fileNotFound","raised ECG:fileNotFound",PASS
 T28,Error,"Text file with no time column and cfg.fs empty","Error ID ECG:noFs","raised ECG:noFs",PASS
-,,,,"Run 2026-11-03 11:34: 28/28 passed",
+T29,Edge,"Live-capture parser: CRLF, header, partial lines, "!"","Valid rows kept in order, header/corrupt dropped, split line rejoined","6 lines kept, 2 junk, 1 leads-off, carry-over '10000,1.66'",PASS
+,,,,"Run 2026-11-03 14:30: 29/29 passed",

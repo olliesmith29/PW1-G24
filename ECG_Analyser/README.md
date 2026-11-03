@@ -19,6 +19,16 @@ Group 24: afb48, fjc48, owas20, aedg20, lhs53, ke417
 
 You **don't need any toolboxes**. The filters, spectrum and peak detector are all written from first principles. The code also runs in GNU Octave.
 
+## Recording from the kit (Nano ESP32 + AD8232)
+1. Wire the AD8232 to the Nano ESP32: GND to GND, **3.3V to 3V3**, OUTPUT to A0, LO+ to D10, LO- to D11.
+2. Upload `Firmware/ECG_NanoESP32/ECG_NanoESP32.ino` (board: *Arduino Nano ESP32*). The sketch samples at 500 Hz and sends `time_us,ecg_V` lines over USB.
+3. **Close the Arduino Serial Monitor**, because only one program can use the port.
+4. In `ECG_Analyser.m`, set `source = 'capture';` (optionally set `cfg.capturePort = 'COM5'` and `cfg.captureSeconds = 60`) and press Run.
+5. A live 5-second trace opens so you can check the electrodes. The title turns red if a lead comes off, and closing the window stops the recording early.
+6. The recording is saved as `recordings/ECG_yyyymmdd_HHMMSS.csv` and analysed straight away. To analyse it again later, use `source = 'select'`.
+
+Live capture needs MATLAB R2019b or later (`serialport`). Run the laptop on battery while electrodes are attached.
+
 ## Supported data
 | Source | Format | What the program does |
 |---|---|---|
@@ -30,8 +40,10 @@ If the AD8232 gain or the Arduino reference voltage is different, change `cfg.fr
 
 ## Program structure
 ```
-ECG_Analyser.m          main script (user settings, single or batch run)
+ECG_Analyser.m          main script (user settings, single or batch run, live capture)
 src/
+  ecg_capture.m         record from the Nano ESP32 over USB serial, live view, save CSV
+  ecg_capture_parse.m   split the serial stream into valid CSV lines (unit-tested)
   ecg_config.m          every parameter and clinical threshold in one place
   ecg_run_source.m      load a file or make a synthetic signal, then analyse
   ecg_load.m            CSV/TXT/MAT reader (time column, fs, jitter, leads-off)
@@ -51,7 +63,7 @@ src/
   ecg_summary_text.m    shared text formatting
   ecg_synth.m           synthetic ECG generator with known ground truth (for testing)
 tests/
-  run_tests.m           28-case verification test plan, writes test_results.csv
+  run_tests.m           29-case verification test plan, writes test_results.csv
 ```
 
 ## Processing flow
@@ -85,7 +97,7 @@ flowchart TD
 | Pause / dropped beat | RR > 2 s / RR ≈ 2 × median |
 
 ## Verification
-Run `tests/run_tests.m`. The suite covers 14 nominal rhythms, 4 boundary conditions (HR exactly 60 vs 58 bpm, fs = 125 Hz, very heavy noise), 5 edge cases (inverted leads, flat line, 1.5 s record, 5 % NaN dropouts, a realistic Arduino CSV) and 5 error-handling cases. **Current result: 28 / 28 pass** (see `tests/test_results.csv`).
+Run `tests/run_tests.m`. The suite covers 14 nominal rhythms, 4 boundary conditions (HR exactly 60 vs 58 bpm, fs = 125 Hz, very heavy noise), 5 edge cases (inverted leads, flat line, 1.5 s record, 5 % NaN dropouts, a realistic Arduino CSV) and 5 error-handling cases, plus a test of the live-capture serial parser. **Current result: 29 / 29 pass** (see `tests/test_results.csv`).
 
 ## Known limitations
 - Single lead: the program can't localise an infarct or tell LBBB from RBBB.

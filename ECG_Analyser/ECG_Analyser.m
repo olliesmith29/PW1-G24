@@ -23,6 +23,8 @@ cfg = ecg_config();
 
 %% ===================== USER SETTINGS ===================================
 % source options:
+%   'capture'             - record live from the Nano ESP32 + AD8232
+%                           (Firmware/ECG_NanoESP32), save CSV, analyse
 %   'select'              - choose a file with a dialog box
 %   'C:\path\to\ecg.csv'  - a specific file
 %   'synthetic:normal'    - built-in signal; also brady, tachy, af, pvc,
@@ -30,17 +32,26 @@ cfg = ecg_config();
 %                           pause, vt
 %   'demo'                - batch-analyse every synthetic rhythm
 %   a folder path         - batch-analyse every recording in the folder
-source = 'select';
+source = 'capture';
 
 cfg.fs        = [];        % Hz - REQUIRED if your file has no time column
                            %      (e.g. 250 if the Arduino sketch used delay(4))
-cfg.units     = 'auto';    % 'auto' | 'mV' | 'V' | 'V_adc' | 'counts'
+cfg.units     = 'capture';    % 'auto' | 'mV' | 'V' | 'V_adc' | 'counts'
 cfg.mainsFreq = 50;        % UK mains
 cfg.sex       = 'unknown'; % 'male' | 'female' - sets the QTc limit
 cfg.displaySeconds = 10;   % length of the annotated strip
 cfg.saveOutputs = true;    % write report, beat table and PNG
 cfg.outputDir   = fullfile(here, 'ECG_outputs');
+
+% live capture (source = 'capture')
+cfg.capturePort    = '';   % '' = auto-detect, or e.g. 'COM5' (Arduino IDE > Tools > Port)
+cfg.captureSeconds = 30;   % recording length
+cfg.captureDir     = fullfile(here, 'recordings');
 %% =======================================================================
+
+if strcmpi(source, 'capture')
+    source = ecg_capture(cfg.capturePort, cfg.captureSeconds, cfg.captureDir);
+end
 
 if strcmpi(source, 'select')
     [f, p] = uigetfile({'*.csv;*.txt;*.dat;*.mat', 'ECG recordings'}, 'Select an ECG recording');

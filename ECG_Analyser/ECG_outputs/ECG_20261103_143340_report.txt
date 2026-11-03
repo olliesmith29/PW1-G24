@@ -1,0 +1,45 @@
+ECG ANALYSIS REPORT
+EE22005 PW1 - The Puzzling Physiology (ECG)
+Group 24 - afb48, fjc48, owas20, aedg20, lhs53, ke417
+Generated: 2026-11-03 14:34:13
+========================================================================
+Units: Arbitrary units - amplitude rules (ST, voltage) disabled
+Filters: HP 0.50 Hz, notch 50  100  150 Hz, LP 40 Hz (zero-phase)
+Mains power share: 0.1% before -> 0.00% after filtering
+
+MEASUREMENTS
+  Source        : ECG_20261103_143340
+  Duration      : 32.6 s @ 500 Hz   Beats: 46
+  Signal quality: Poor (SQI 0.11)
+  Rhythm        : Regular, narrow QRS, no consistent P waves
+  Heart rate    : 83 bpm (range 39 - 278)
+  PR interval   : 194 ms   (P waves in 46% of beats)
+  QRS duration  : 76 ms
+  QT / QTc(B/F) : 438 ms / 515 ms / 488 ms
+  ST level      : +0.11 a.u.     T amp: +0.35 a.u.
+  R amp / QRSpp : 1.20 a.u. / 2.00 a.u.
+  HRV SDNN/RMSSD: 135 ms / 185 ms   pNN50 8%
+  Ectopic beats : 5 PVC, 0 PAC   Pauses: 0
+
+DIFFERENTIALS / FINDINGS
+  1. [High] Premature ventricular complexes (PVCs)
+     Evidence: 5 premature wide/abnormal beat(s), 10.9% of beats. Run of 3 consecutive PVCs (NSVT).
+     Consider: Caffeine, stress, electrolyte imbalance, structural heart disease.
+  2. [High] Prolonged QT interval
+     Evidence: QTc (Bazett) 515 ms (> 450 ms).
+     Consider: Congenital long-QT, QT-prolonging drugs, low K+/Mg2+/Ca2+. >500 ms = torsades risk.
+  3. [Moderate] Possible second-degree AV block / sinus exit block
+     Evidence: 1 RR interval(s) approximately twice the normal length.
+     Consider: Mobitz I/II AV block, sinoatrial exit block, non-conducted PACs.
+  4. [Low] P waves not identified - possible junctional or ectopic atrial rhythm
+     Evidence: P waves found in 46% of beats.
+     Consider: Also caused by small P waves in this lead or noise.
+  5. [Note] Poor signal quality - interpret with caution
+     Evidence: Signal-quality index 0.11 (< 0.70).
+     Consider: Motion artefact, poor electrode contact, muscle (EMG) noise.
+
+WARNINGS
+  - 3% of the record is flat/saturated - possible leads-off or clipping.
+
+DISCLAIMER: Automated, rule-based analysis of a single-lead ECG for education (EE22005).
+It is not a medical device and must not be used for diagnosis or treatment decisions.

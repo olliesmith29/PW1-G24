@@ -1,0 +1,33 @@
+ECG ANALYSIS REPORT
+EE22005 PW1 - The Puzzling Physiology (ECG)
+Group 24 - afb48, fjc48, owas20, aedg20, lhs53, ke417
+Generated: 2026-11-03 14:35:50
+========================================================================
+Units: Arbitrary units - amplitude rules (ST, voltage) disabled
+Filters: HP 0.50 Hz, notch 50  100  150 Hz, LP 40 Hz (zero-phase)
+Mains power share: 0.1% before -> 0.00% after filtering
+
+MEASUREMENTS
+  Source        : ECG_20261103_143520
+  Duration      : 30.1 s @ 500 Hz   Beats: 41
+  Signal quality: Poor (SQI 0.57)
+  Rhythm        : Regular, narrow QRS, no consistent P waves
+  Heart rate    : 83 bpm (range 76 - 87)
+  PR interval   : 252 ms   (P waves in 44% of beats)
+  QRS duration  : 76 ms
+  QT / QTc(B/F) : 310 ms / 364 ms / 345 ms
+  ST level      : +0.12 a.u.     T amp: +0.41 a.u.
+  R amp / QRSpp : 1.23 a.u. / 1.90 a.u.
+  HRV SDNN/RMSSD: 28 ms / 21 ms   pNN50 0%
+  Ectopic beats : 0 PVC, 0 PAC   Pauses: 0
+
+DIFFERENTIALS / FINDINGS
+  1. [Low] P waves not identified - possible junctional or ectopic atrial rhythm
+     Evidence: P waves found in 44% of beats.
+     Consider: Also caused by small P waves in this lead or noise.
+  2. [Note] Poor signal quality - interpret with caution
+     Evidence: Signal-quality index 0.57 (< 0.70).
+     Consider: Motion artefact, poor electrode contact, muscle (EMG) noise.
+
+DISCLAIMER: Automated, rule-based analysis of a single-lead ECG for education (EE22005).
+It is not a medical device and must not be used for diagnosis or treatment decisions.

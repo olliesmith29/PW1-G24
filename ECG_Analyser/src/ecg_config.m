@@ -65,6 +65,11 @@ th.sqiPoor       = 0.70;
 cfg.th = th;
 cfg.sex = 'unknown';       % 'male' | 'female' | 'unknown' (QTc limits)
 
+%% Live capture (ecg_capture / source = 'capture')
+cfg.capturePort    = '';   % '' = auto-detect the Nano ESP32's COM port
+cfg.captureSeconds = 30;
+cfg.captureDir     = fullfile(pwd, 'recordings');
+
 %% Output
 cfg.displaySeconds = 10;   % length of the annotated strip
 cfg.showPlots   = true;

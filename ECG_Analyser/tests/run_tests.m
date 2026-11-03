@@ -5,6 +5,7 @@ function results = run_tests()
 %   Test signals come from ecg_synth, so the true beat positions and
 %   rhythm are known exactly. Categories: Nominal operation, Boundary
 %   conditions, Edge cases (fail-safe behaviour) and Error handling.
+%   T29 checks the live-capture serial parser without hardware.
 %   R-peak match tolerance: +/- 75 ms.
 
 here = fileparts(mfilename('fullpath'));
@@ -43,6 +44,7 @@ T(end+1,:) = {'T25','Error','Negative sampling rate',                         'E
 T(end+1,:) = {'T26','Error','Matrix instead of vector',                       'Error ID ECG:badInput',                            @() t_error(@() ecg_analyse(randn(100,3), 500, cfg), 'ECG:badInput')};
 T(end+1,:) = {'T27','Error','File does not exist',                            'Error ID ECG:fileNotFound',                        @() t_error(@() ecg_load('no_such_file.csv', cfg), 'ECG:fileNotFound')};
 T(end+1,:) = {'T28','Error','Text file with no time column and cfg.fs empty', 'Error ID ECG:noFs',                                 @() t_nofs(cfg)};
+T(end+1,:) = {'T29','Edge','Live-capture parser: CRLF, header, partial lines, "!"', 'Valid rows kept in order, header/corrupt dropped, split line rejoined', @() t_parser()};
 
 %% Run
 n = size(T,1);
@@ -195,6 +197,19 @@ fw = fopen(fn, 'w'); fprintf(fw, '%d\n', round(512 + 50*randn(500,1))); fclose(f
 c = cfg; c.fs = [];
 [ok, m] = t_error(@() ecg_load(fn, c), 'ECG:noFs');
 delete(fn);
+end
+
+function [ok, m] = t_parser()
+% serial text arriving in two chunks, the second line split across them
+c1 = sprintf('3456,1.65\r\ntime_us,ecg_V\r\n0,1.6512\r\n2000,1.65');
+c2 = sprintf('38\r\n!\r\n4000,1.6601\r\n6000,abc\r\n8000,1.6620\r\n10000,1.66');
+[a, rest] = ecg_capture_parse(c1);
+[b, rest2] = ecg_capture_parse([rest c2]);
+lines = [a.lines, b.lines];
+expect = {'3456,1.65','0,1.6512','2000,1.6538','!','4000,1.6601','8000,1.6620'};
+ok = isequal(lines, expect) && a.nJunk + b.nJunk == 2 && b.nOff == 1 && ...
+     strcmp(rest2, '10000,1.66') && abs(b.v(1) - 1.6538) < 1e-9;
+m = sprintf('%d lines kept, %d junk, %d leads-off, carry-over "%s"', numel(lines), a.nJunk + b.nJunk, b.nOff, rest2);
 end
 
 function [ok, m] = t_error(fh, id)
