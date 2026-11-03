@@ -74,24 +74,51 @@ if ~isempty(h), legend(h, lab, 'Location', 'northeast', 'Orientation', 'horizont
 linkaxes([ax1 ax3], 'x');
 
 %% 4. Average beat
-subplot(4,3,6);
+ax4 = subplot(4,3,6);
+% shrink slightly so the title clears panel 2's x-label and the x-label
+% clears panel 6's title
+p4 = get(ax4, 'Position');
+set(ax4, 'Position', [p4(1), p4(2) + 0.015, p4(3), p4(4) - 0.035]);
 if ~isempty(F.beats)
     tt = 1000*F.templateTime;
+    xl = [tt(1) tt(end)];
     nShow = min(40, size(F.beats,2));
-    plot(tt, F.beats(:, 1:nShow), 'Color', [0.85 0.85 0.85]); hold on
     nIdx = F.beatType(F.beatIdx) == 'N';
     if any(nIdx), avg = median(F.beats(:, nIdx), 2); else, avg = median(F.beats, 2); end
-    yl = [min(avg) max(avg)] + [-0.15 0.15]*range_(avg);
-    shade(1000*[F.offPon F.offQRSon], yl, [0.85 0.95 0.85]);
-    shade(1000*[F.offQRSon F.offQRSoff], yl, [0.95 0.85 0.85]);
-    shade(1000*[F.offQRSoff F.offTend], yl, [0.99 0.92 0.80]);
+    % y-range: trace plus margins, and a reserved label strip at the top
+    r = range_(avg);
+    strip = 0.22*r;
+    yl = [min(avg) - 0.12*r, max(avg) + 0.10*r + strip];
+    yStrip = yl(2) - strip;                 % bottom of the label strip
+    segs = {1000*[F.offPon F.offQRSon],    'PR',   [0.85 0.95 0.85], C.P;
+            1000*[F.offQRSon F.offQRSoff], 'QRS',  [0.95 0.85 0.85], C.R;
+            1000*[F.offQRSoff F.offTend],  'ST-T', [0.99 0.92 0.80], C.T};
+    hold on
+    % 1) interval shading (behind everything, clipped to the axes)
+    for s = 1:size(segs,1)
+        shade(clip_to(segs{s,1}, xl), [yl(1) yStrip], segs{s,3});
+    end
+    % 2) individual beats, 3) average beat
+    plot(tt, F.beats(:, 1:nShow), 'Color', [0.80 0.80 0.80]);
     plot(tt, avg, 'Color', C.ecg, 'LineWidth', 2);
-    hold off; grid on; ylim(yl); xlim([tt(1) tt(end)]);
-    text(1000*mean([F.offPon F.offQRSon]), yl(1), 'PR', 'HorizontalAlignment', 'center', 'VerticalAlignment', 'bottom', 'Color', C.P);
-    text(1000*mean([F.offQRSon F.offQRSoff]), yl(1), 'QRS', 'HorizontalAlignment', 'center', 'VerticalAlignment', 'bottom', 'Color', C.R);
-    text(1000*mean([F.offQRSoff F.offTend]), yl(1), 'ST-T', 'HorizontalAlignment', 'center', 'VerticalAlignment', 'bottom', 'Color', C.T);
+    % 4) label strip: white band covers any grey beats, then labels
+    patch([xl(1) xl(2) xl(2) xl(1)], [yStrip yStrip yl(2) yl(2)], 'w', 'EdgeColor', 'none');
+    plot(xl, [yStrip yStrip], '-', 'Color', [0.75 0.75 0.75]);
+    for s = 1:size(segs,1)
+        x = clip_to(segs{s,1}, xl);
+        if ~any(isnan(x)) && x(2) > x(1)
+            text(mean(x), yStrip + 0.5*strip, segs{s,2}, 'Color', segs{s,4}, ...
+                'FontSize', 8, 'FontWeight', 'bold', 'Clipping', 'on', ...
+                'HorizontalAlignment', 'center', 'VerticalAlignment', 'middle');
+        end
+    end
+    hold off; grid on; box on
+    xlim(xl); ylim(yl);
+    set(ax4, 'Layer', 'top');               % keep ticks/grid above patches
+    yt = get(ax4, 'YTick');
+    set(ax4, 'YTick', yt(yt <= yStrip));    % no tick labels inside the label strip
 end
-xlabel('Time from R peak (ms)'); ylabel(u);
+xlabel('Time from R (ms)'); ylabel(u);
 title('4. Average beat (grey = individual beats)');
 
 %% 5. Tachogram
@@ -148,6 +175,13 @@ end
 function shade(x, yl, col)
 if any(isnan(x)) || x(2) <= x(1), return; end
 patch([x(1) x(2) x(2) x(1)], [yl(1) yl(1) yl(2) yl(2)], col, 'EdgeColor', 'none');
+end
+
+function x = clip_to(x, xl)
+%CLIP_TO Limit an [start end] interval to the axis range (NaN if outside).
+if any(isnan(x)), return; end
+x = [max(x(1), xl(1)), min(x(2), xl(2))];
+if x(2) <= x(1), x = [NaN NaN]; end
 end
 
 function r = range_(v)
