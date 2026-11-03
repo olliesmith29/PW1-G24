@@ -1,0 +1,39 @@
+ECG ANALYSIS REPORT
+EE22005 PW1 - The Puzzling Physiology (ECG)
+Group 24 - afb48, fjc48, owas20, aedg20, lhs53, ke417
+Generated: 2026-11-03 11:44:15
+========================================================================
+Units: mV
+Filters: HP 0.50 Hz, notch 50  100  150 Hz, LP 40 Hz (zero-phase)
+Mains power share: 2.4% before -> 0.00% after filtering
+
+MEASUREMENTS
+  Source        : synthetic_vt
+  Duration      : 30.0 s @ 500 Hz   Beats: 80
+  Signal quality: Good (SQI 0.99)
+  Rhythm        : Regular, wide QRS, no P waves
+  Heart rate    : 165 bpm (range 162 - 169)
+  PR interval   : n/a   (P waves in 0% of beats)
+  QRS duration  : 196 ms
+  QT / QTc(B/F) : 333 ms / 552 ms / 466 ms
+  ST level      : +0.28 mV     T amp: +0.30 mV
+  R amp / QRSpp : 1.47 mV / 1.52 mV
+  HRV SDNN/RMSSD: 4 ms / 5 ms   pNN50 0%
+  Ectopic beats : 0 PVC, 0 PAC   Pauses: 0
+
+DIFFERENTIALS / FINDINGS
+  1. [High] Ventricular tachycardia
+     Evidence: Wide QRS (196 ms) at 165 bpm with no P waves. URGENT if real.
+     Consider: Ischaemic heart disease, cardiomyopathy, electrolyte disturbance.
+  2. [Moderate] SVT with aberrant conduction
+     Evidence: Wide-complex tachycardia.
+     Consider: Bundle branch block plus SVT.
+  3. [Note] ST / QT not assessed
+     Evidence: QRS is wide, so ST-segment and QT measurements are unreliable (secondary repolarisation changes).
+     Consider: Requires 12-lead ECG and clinician review.
+
+WARNINGS
+  - Units assumed: mV.
+
+DISCLAIMER: Automated, rule-based analysis of a single-lead ECG for education (EE22005).
+It is not a medical device and must not be used for diagnosis or treatment decisions.

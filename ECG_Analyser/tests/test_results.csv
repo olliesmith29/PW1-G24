@@ -1,0 +1,30 @@
+ID,Category,Description,Pass criterion,Measured,Result
+T01,Nominal,"Clean normal sinus rhythm, 72 bpm","Se & PPV >= 99%, HR 72+/-2, finding "Normal sinus rhythm"","Se 100.0% PPV 100.0% HR 72 | Normal sinus rhythm; Physiological state (HRV)",PASS
+T02,Nominal,"Normal rhythm + baseline wander, 50 Hz, EMG","Se & PPV >= 99%, HR 72+/-2, finding "Normal sinus rhythm"","Se 100.0% PPV 100.0% HR 72 | Normal sinus rhythm; Physiological state (HRV)",PASS
+T03,Nominal,"Sinus bradycardia, 48 bpm (noisy)","Se & PPV >= 99%, finding "Sinus bradycardia"","Se 100.0% PPV 100.0% HR 48 | Sinus bradycardia; Physiological state (HRV)",PASS
+T04,Nominal,"Sinus tachycardia, 125 bpm (noisy)","Se & PPV >= 99%, finding "Sinus tachycardia"","Se 100.0% PPV 100.0% HR 125 | Sinus tachycardia; Physiological state (HRV)",PASS
+T05,Nominal,"Atrial fibrillation (noisy)","Se & PPV >= 99%, top finding "Atrial fibrillation"","Se 100.0% PPV 100.0% HR 95 | Atrial fibrillation; Atrial flutter with variable block",PASS
+T06,Nominal,"PVC every 6th beat (noisy)","All PVCs labelled V, no N beat labelled V, finding "PVCs"","PVCs found 5/5, false V 0 | Premature ventricular complexes (PVCs); Physiological state (HRV)",PASS
+T07,Nominal,"First-degree AV block, PR 280 ms","PR 280+/-20 ms, finding "First-degree AV block"","PR = 280 ms | First-degree AV block; Physiological state (HRV)",PASS
+T08,Nominal,"Long QT, QTc 530 ms","QTcB 530+/-30 ms, finding "Prolonged QT interval"","QTcB = 532 ms | Prolonged QT interval; Physiological state (HRV)",PASS
+T09,Nominal,"ST elevation +0.25 mV","ST +0.25+/-0.06 mV, finding "ST elevation"","ST = +0.25 mV | ST elevation; Physiological state (HRV)",PASS
+T10,Nominal,"ST depression -0.15 mV","ST -0.15+/-0.06 mV, finding "ST depression"","ST = -0.14 mV | ST depression; Physiological state (HRV)",PASS
+T11,Nominal,"Wide QRS (bundle branch block)","QRS >= 120 ms, finding "Wide QRS"","Se 100.0% PPV 100.0% HR 72 | Wide QRS - bundle branch block; ST / QT not assessed; Physiological state (HRV)",PASS
+T12,Nominal,"Mobitz II second-degree AV block","finding "Possible second-degree AV block"","Se 100.0% PPV 100.0% HR 75 | Possible second-degree AV block / sinus exit block; Physiological state (HRV)",PASS
+T13,Nominal,"2.8 s sinus pause","finding "Sinus pause / arrest"","Se 100.0% PPV 100.0% HR 70 | Sinus pause / arrest; Physiological state (HRV)",PASS
+T14,Nominal,"Ventricular tachycardia, 165 bpm","Se & PPV >= 99%, finding "Ventricular tachycardia"","Se 100.0% PPV 100.0% HR 165 | Ventricular tachycardia; SVT with aberrant conduction; ST / QT not assessed",PASS
+T15,Boundary,"HR exactly 60 bpm","NOT labelled bradycardia (limit is < 60)","HR 60.3 bpm, 'Sinus bradycardia' reported: 0",PASS
+T16,Boundary,"HR 58 bpm (just below limit)","Labelled "Sinus bradycardia"","HR 58.2 bpm, 'Sinus bradycardia' reported: 1",PASS
+T17,Boundary,"Low sampling rate 125 Hz","Se & PPV >= 99%, HR 72+/-2","Se 100.0% PPV 100.0% HR 72, low-fs notches 50, warning 0",PASS
+T18,Boundary,"Very heavy noise (EMG 0.1 mV, motion)","Se & PPV >= 95%, no crash","Se 100.0% PPV 100.0% quality Good",PASS
+T19,Edge,"Inverted lead polarity","Polarity = -1, Se & PPV >= 99%, normal rhythm","polarity -1, Se 100.0% PPV 100.0% | Normal sinus rhythm; Physiological state (HRV)",PASS
+T20,Edge,"Flat line (leads off)","No crash, 0 beats, "Insufficient data" only","beats 0 | Insufficient data for rhythm analysis",PASS
+T21,Edge,"Recording only 1.5 s long","No crash, short-record warning, < 3 beats -> insufficient","beats 0, warning 1 | Insufficient data for rhythm analysis",PASS
+T22,Edge,"5% NaN samples (dropouts)","NaNs interpolated + warning, Se & PPV >= 99%","warning 1, Se 100.0% PPV 100.0%",PASS
+T23,Edge,"Arduino CSV: millis() time, ADC counts, "!" lines, jitter","fs 250+/-5 Hz, units = counts, 3 "!" lines counted, HR 72+/-2","fs 250.0 Hz, units counts, '!' lines 3, resampled 1, HR 72",PASS
+T24,Error,"Empty input","Error ID ECG:emptyInput","raised ECG:emptyInput",PASS
+T25,Error,"Negative sampling rate","Error ID ECG:badFs","raised ECG:badFs",PASS
+T26,Error,"Matrix instead of vector","Error ID ECG:badInput","raised ECG:badInput",PASS
+T27,Error,"File does not exist","Error ID ECG:fileNotFound","raised ECG:fileNotFound",PASS
+T28,Error,"Text file with no time column and cfg.fs empty","Error ID ECG:noFs","raised ECG:noFs",PASS
+,,,,"Run 2026-11-03 11:34: 28/28 passed",

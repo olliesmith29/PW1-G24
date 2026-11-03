@@ -1,0 +1,36 @@
+ECG ANALYSIS REPORT
+EE22005 PW1 - The Puzzling Physiology (ECG)
+Group 24 - afb48, fjc48, owas20, aedg20, lhs53, ke417
+Generated: 2026-11-03 11:43:59
+========================================================================
+Units: mV
+Filters: HP 0.50 Hz, notch 50  100  150 Hz, LP 40 Hz (zero-phase)
+Mains power share: 6.9% before -> 0.00% after filtering
+
+MEASUREMENTS
+  Source        : synthetic_pvc
+  Duration      : 30.0 s @ 500 Hz   Beats: 34
+  Signal quality: Good (SQI 1.00)
+  Rhythm        : Sinus rhythm
+  Heart rate    : 70 bpm (range 49 - 122)
+  PR interval   : 160 ms   (P waves in 100% of beats)
+  QRS duration  : 82 ms
+  QT / QTc(B/F) : 374 ms / 403 ms / 393 ms
+  ST level      : +0.00 mV     T amp: +0.31 mV
+  R amp / QRSpp : 1.17 mV / 1.39 mV
+  HRV SDNN/RMSSD: 26 ms / 44 ms   pNN50 27%
+  Ectopic beats : 5 PVC, 0 PAC   Pauses: 0
+
+DIFFERENTIALS / FINDINGS
+  1. [High] Premature ventricular complexes (PVCs)
+     Evidence: 5 premature wide/abnormal beat(s), 14.7% of beats.
+     Consider: Caffeine, stress, electrolyte imbalance, structural heart disease.
+  2. [Note] Physiological state (HRV)
+     Evidence: RMSSD 44 ms, SDNN 26 ms. Resting-range rate and HRV.
+     Consider: Application: stress / fitness monitoring.
+
+WARNINGS
+  - Units assumed: mV.
+
+DISCLAIMER: Automated, rule-based analysis of a single-lead ECG for education (EE22005).
+It is not a medical device and must not be used for diagnosis or treatment decisions.

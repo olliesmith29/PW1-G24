@@ -1,0 +1,36 @@
+ECG ANALYSIS REPORT
+EE22005 PW1 - The Puzzling Physiology (ECG)
+Group 24 - afb48, fjc48, owas20, aedg20, lhs53, ke417
+Generated: 2026-11-03 11:43:56
+========================================================================
+Units: mV
+Filters: HP 0.50 Hz, notch 50  100  150 Hz, LP 40 Hz (zero-phase)
+Mains power share: 7.7% before -> 0.00% after filtering
+
+MEASUREMENTS
+  Source        : synthetic_af
+  Duration      : 30.0 s @ 500 Hz   Beats: 46
+  Signal quality: Good (SQI 0.96)
+  Rhythm        : Irregularly irregular, no consistent P waves
+  Heart rate    : 99 bpm (range 66 - 168)
+  PR interval   : 350 ms   (P waves in 8% of beats)
+  QRS duration  : 82 ms
+  QT / QTc(B/F) : 344 ms / 419 ms / 392 ms
+  ST level      : +0.01 mV     T amp: +0.28 mV
+  R amp / QRSpp : 1.15 mV / 1.39 mV
+  HRV SDNN/RMSSD: 124 ms / 123 ms   pNN50 69%
+  Ectopic beats : 0 PVC, 10 PAC   Pauses: 0
+
+DIFFERENTIALS / FINDINGS
+  1. [High] Atrial fibrillation
+     Evidence: nRMSSD 0.31 (> 0.12), P waves in 8% of beats, PR SD 85 ms.
+     Consider: Hypertension, valve disease, heart failure, thyroid disease, alcohol, age.
+  2. [Low] Atrial flutter with variable block
+     Evidence: Irregular ventricular response without clear P waves.
+     Consider: As for AF.
+
+WARNINGS
+  - Units assumed: mV.
+
+DISCLAIMER: Automated, rule-based analysis of a single-lead ECG for education (EE22005).
+It is not a medical device and must not be used for diagnosis or treatment decisions.
