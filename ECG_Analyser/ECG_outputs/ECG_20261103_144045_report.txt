@@ -1,0 +1,42 @@
+ECG ANALYSIS REPORT
+EE22005 PW1 - The Puzzling Physiology (ECG)
+Group 24 - afb48, fjc48, owas20, aedg20, lhs53, ke417
+Generated: 2026-11-03 14:40:51
+========================================================================
+Units: Arbitrary units - amplitude rules (ST, voltage) disabled
+Filters: HP 0.50 Hz, notch 50  100  150 Hz, LP 40 Hz (zero-phase)
+Mains power share: 0.1% before -> 0.00% after filtering
+
+MEASUREMENTS
+  Source        : ECG_20261103_144045
+  Duration      : 5.2 s @ 500 Hz   Beats: 10
+  Signal quality: Poor (SQI 0.22)
+  Rhythm        : Irregularly irregular, no consistent P waves
+  Heart rate    : 91 bpm (range 82 - 297)
+  PR interval   : 220 ms   (P waves in 88% of beats)
+  QRS duration  : 65 ms
+  QT / QTc(B/F) : 326 ms / 401 ms / 374 ms
+  ST level      : -0.06 a.u.     T amp: -0.17 a.u.
+  R amp / QRSpp : 1.17 a.u. / 1.93 a.u.
+  HRV SDNN/RMSSD: 124 ms / 124 ms   pNN50 25%
+  Ectopic beats : 2 PVC, 0 PAC   Pauses: 0
+
+DIFFERENTIALS / FINDINGS
+  1. [High] Atrial fibrillation
+     Evidence: nRMSSD 0.20 (> 0.12), P waves in 88% of beats, PR SD 117 ms.
+     Consider: Hypertension, valve disease, heart failure, thyroid disease, alcohol, age.
+  2. [Low] Atrial flutter with variable block
+     Evidence: Irregular ventricular response without clear P waves.
+     Consider: As for AF.
+  3. [Low] T-wave inversion
+     Evidence: Median T amplitude -0.17 a.u..
+     Consider: Ischaemia, ventricular strain, normal in some lead positions - check electrode placement.
+  4. [Note] Poor signal quality - interpret with caution
+     Evidence: Signal-quality index 0.22 (< 0.70).
+     Consider: Motion artefact, poor electrode contact, muscle (EMG) noise.
+
+WARNINGS
+  - 4% of the record is flat/saturated - possible leads-off or clipping.
+
+DISCLAIMER: Automated, rule-based analysis of a single-lead ECG for education (EE22005).
+It is not a medical device and must not be used for diagnosis or treatment decisions.
