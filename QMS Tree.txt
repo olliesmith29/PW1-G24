@@ -1,0 +1,36 @@
+Group 24: aedg20, owas20, afb48, fjc48, lhs53, ke417
+
+└───QMS
+    ├───1. Quality Documents
+    │   ├───1. Quality Manual
+    │   ├───2. Procedure
+    │   │       PW1-G24-PRO-001-Naming_Convention_v1.0.docx
+    │   │       PW1-G24-PRO-001-Naming_Convention_v1.0.pdf
+    │   │
+    │   └───3. Forms
+    ├───2. Quality Control
+    ├───3. Engineering
+    │       PW1-G24-MTX-001-Traceability-Matrix_v.1.0.xlsx
+    │       PW1-G24-MTX-001-Traceability-Matrix_v1.1.xlsx
+    │       PW1-G24-MTX-001-Traceability-Matrix_v1.2.xlsx
+    │
+    ├───4. Operations
+    │       PW1-G24-MTX-002-Skills-Matrix_v1.0.pdf
+    │       PW1-G24-MTX-002-Skills-Matrix_v1.0.xlsx
+    │       PW1-G24-PLN-001-Project-Management_v1.0.docx
+    │       PW1-G24-PLN-001-Project-Management_v1.0.pdf
+    │       PW1-G24-PLN-002-Gannt-Chart_v1.0.pdf.pdf
+    │
+    ├───5. Purchasing
+    ├───6. Sales + Customer Service
+    │       PW1-G24-PRS-001-ECG-Analyser-Overview_v0.1.pptx.pptx
+    │       PW1-G24-REC-002-Circular-Economy_v1.0.docx.docx
+    │
+    ├───7. Human Resources
+    │       PW1-G24-REC-001-Signed-Group-Charter_v1.0.docx
+    │       PW1-G24-REC-001-Signed-Group-Charter_v1.0.pdf
+    │
+    └───8. Document Gallery
+            PW1-G24-LST-001-QMS-Document-Registration_v1.0.xlsx
+
+
